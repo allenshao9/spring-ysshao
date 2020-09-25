@@ -1,10 +1,8 @@
 <h1 align="center">Java学习指南</h1>
  <p align="center">
-<a href="https://ysshao.cn/Notes/#/" target="_self">
-    点击在线阅读<br/>
-</a>
+<a href="https://ysshao.cn/Notes/#/" target="_self">点击在线阅读<br/></a>
 </p>
-## 程序学习笔记
+## 程序笔记
 
 - springboot整合web模块
 - springboot整合jdbc模块
