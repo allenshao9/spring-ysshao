@@ -1,0 +1,13 @@
+server:
+  port: 9999
+
+customer:
+  customerid: ${random.uuid}
+
+debug: true
+
+#i18n
+spring:
+  messages:
+    basename: i18n.login
+    encoding: UTF-8

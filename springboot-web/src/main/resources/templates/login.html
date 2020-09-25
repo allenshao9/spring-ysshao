@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>欢迎访问 </title>
+		<!-- Bootstrap core CSS -->
+		<link href="assets/css/bootstrap.min.css"  th:href="@{/webjars/bootstrap/4.3.0/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="assets/css/signin.css"  th:href="@{/assets/css/signin.css}" rel="stylesheet">
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" action="homepage.html" th:action="@{/user/action}" method="post" >
+			<img class="mb-4" src="assets/img/lingo.svg" th:src="@{/assets/img/lingo.svg}" alt="" width="110" height="110">
+			<h3 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}" >Please sign in</h3>
+			<label class="sr-only">Username</label>
+			<input type="text" class="form-control"  name="Username"  placeholder="Username" th:placeholder="#{login.username}" required="" autofocus="">
+			<label class="sr-only">Password</label>
+			<input type="password" class="form-control" name="Password" placeholder="Password" th:placeholder="#{login.password}" required="">
+			<div class="checkbox mb-3">
+				<label style="display:none">
+          <input type="checkbox" value="remember-me" >[[#{login.remember}]]
+        </label>
+				<div style="color:red" th:text="${errmsg}" th:if="${not #strings.isEmpty(errmsg)}" ></div>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}" >Sign in</button>
+			<p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+			<a class="btn btn-sm"  th:href="@{/login(lange='zh_CN')}">中文</a>
+			<a class="btn btn-sm" th:href="@{/login(lange='en_US')}" >English</a>
+		</form>
+
+	</body>
+
+</html>

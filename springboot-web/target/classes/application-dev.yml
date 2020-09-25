@@ -1,0 +1,37 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /ysshao
+
+customer:
+  customerid: ${random.uuid}
+debug: false
+spring:
+  messages:
+    #国际化
+    basename: i18n.login
+  #禁用缓存。实时生效
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+    # springboot 默认给过滤了
+    hiddenmethod:
+      filter:
+        enabled: true
+  datasource:
+    username: czals757
+    password: czals757
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    #默认就是HikarCP连接池。 性能很好
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    hibernate:
+      # 更新或者创建数据表结构
+      ddl-auto: update
+    #控制台显示SQL
+    show-sql: true
+logging:
+  config: classpath:log/logback-spring.xml
+

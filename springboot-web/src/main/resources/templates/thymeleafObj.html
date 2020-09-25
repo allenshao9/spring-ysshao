@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf模板测试</title>
+</head>
+<body>
+Thymeleaf模板引擎测试 数组
+<hr/>
+<h3 th:text="${user}" th:each="user: ${users}"></h3>
+<hr/>
+<h5>
+    <span th:each="aaa:${users}">[[${aaa}]] </span>
+</h5>
+
+</body>
+</html>

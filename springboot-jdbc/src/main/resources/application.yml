@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springboot-jdbc
+  datasource:
+    username: czals757
+    password: czals757
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+server:
+  port: 8081
