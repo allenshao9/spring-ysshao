@@ -3,7 +3,7 @@ package com.amarsoft.ysshao.rocketmq.controller;/**
  * @create 2020-09-25 15:26
  */
 
-import com.amarsoft.ysshao.rocketmq.constan.MQConstant;
+import com.amarsoft.ysshao.rocketmq.constant.MQConstant;
 import com.amarsoft.ysshao.rocketmq.entity.CommonResult;
 import com.amarsoft.ysshao.rocketmq.entity.UserInfo;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;

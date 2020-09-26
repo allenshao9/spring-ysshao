@@ -3,7 +3,7 @@ package com.amarsoft.ysshao.rocketmq;/**
  * @create 2020-09-25 14:51
  */
 
-import com.amarsoft.ysshao.rocketmq.constan.MQConstant;
+import com.amarsoft.ysshao.rocketmq.constant.MQConstant;
 import com.amarsoft.ysshao.rocketmq.entity.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;

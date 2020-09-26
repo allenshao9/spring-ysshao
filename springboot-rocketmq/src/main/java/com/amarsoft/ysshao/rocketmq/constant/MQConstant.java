@@ -1,4 +1,4 @@
-package com.amarsoft.ysshao.rocketmq.constan;
+package com.amarsoft.ysshao.rocketmq.constant;
 
 
 /**
