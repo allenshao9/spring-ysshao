@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
         默认值 MessageModel.CLUSTERING 集群   多个消费者不会被重复消费同一个信息。
         MessageModel.BROADCASTING 广播
  */
-
 @Component
 @RocketMQMessageListener(topic = MQConstant.TOPIC,messageModel=MessageModel.CLUSTERING, consumerGroup = MQConstant.CONSUMER_GROUP)
 @Slf4j
@@ -35,5 +34,6 @@ public class RocketMqConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String s) {
         log.info("消费消息:" + s);
+        log.info(".....");
     }
 }
