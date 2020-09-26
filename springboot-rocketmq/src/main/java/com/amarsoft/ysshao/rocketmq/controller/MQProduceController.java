@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Random;
 
 /**
- *
  * @Author AllenShao
- * @Description //TODO 
+ * @Description //TODO
  * @Date 2020/9/25 15:26
  * @Version 1.0
  **/
@@ -35,22 +34,23 @@ public class MQProduceController {
     private CommonResult commonResult;
 
     @GetMapping(value = "/mqtest")
-    public  String testRocketMq(){
+    public String testRocketMq() {
 
-        String name = "Hello RocketMQ"+new Random().nextInt(20);
+        String name = "Hello RocketMQ" + new Random().nextInt(20);
         //convertAndSend
         //同步消息
         rocketMQTemplate.getProducer().setProducerGroup("ysshao-");
         rocketMQTemplate.syncSend(MQConstan.TOPIC, name);
+        rocketMQTemplate.syncSend(MQConstan.TOPIC, name+"gg");
 
         System.err.println("发送成功...");
         return "RocketMQ Rroducer Success";
     }
 
     @GetMapping(value = "/mqtestObj")
-    public  CommonResult testRocketObj(){
+    public CommonResult testRocketObj() {
 
-        userInfo.setEmail(new Random().nextInt(20)+"111@163.com");
+        userInfo.setEmail(new Random().nextInt(20) + "111@163.com");
         userInfo.setUsername("科比");
         userInfo.setUserid("kobe");
         commonResult.setCode(200);

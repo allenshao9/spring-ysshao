@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 /**
- *
  * @Author AllenShao
- * @Description //TODO 
+ * @Description //TODO
  * @Date 2020/9/24 21:28
  * @Version 1.0
  **/
 
 @Component
-public class UserInfo implements  Serializable {
+public class UserInfo implements Serializable {
 
 
     private static final long serialVersionUID = 5730461211833452057L;

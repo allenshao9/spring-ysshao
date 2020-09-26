@@ -15,9 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 
 /**
- *
  * @Author AllenShao
- * @Description //TODO 
+ * @Description //TODO
  * @Date 2020/9/25 14:51
  * @Version 1.0
  **/
@@ -29,7 +28,7 @@ public class RocketMqProducer {
     private RocketMQTemplate rocketMQTemplate;
 
     @Test
-    public  void testRocketMq(){
+    public void testRocketMq() {
 
         String name = "Hello RocketMQ";
         rocketMQTemplate.convertAndSend("test-topic-1", name);

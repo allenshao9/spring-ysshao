@@ -1,3 +1,5 @@
+server:
+  port: 8085
 rocketmq:
   name-server: 192.168.58.132:9876
   producer:
