@@ -3,11 +3,10 @@ package com.amarsoft.ysshao.rocketmq.controller;/**
  * @create 2020-09-25 15:26
  */
 
-import com.amarsoft.ysshao.rocketmq.constan.MQConstan;
+import com.amarsoft.ysshao.rocketmq.constan.MQConstant;
 import com.amarsoft.ysshao.rocketmq.entity.CommonResult;
 import com.amarsoft.ysshao.rocketmq.entity.UserInfo;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,8 +39,8 @@ public class MQProduceController {
         //convertAndSend
         //同步消息
         rocketMQTemplate.getProducer().setProducerGroup("ysshao-");
-        rocketMQTemplate.syncSend(MQConstan.TOPIC, name);
-        rocketMQTemplate.syncSend(MQConstan.TOPIC, name+"gg");
+        rocketMQTemplate.syncSend(MQConstant.TOPIC, name);
+        rocketMQTemplate.syncSend(MQConstant.TOPIC, name+"gg");
 
         System.err.println("发送成功...");
         return "RocketMQ Rroducer Success";
@@ -56,7 +55,7 @@ public class MQProduceController {
         commonResult.setCode(200);
         commonResult.setMessage("插入成功");
         commonResult.setData(userInfo);
-        rocketMQTemplate.syncSend(MQConstan.TOPICOBJ, MessageBuilder.withPayload(commonResult).build());
+        rocketMQTemplate.syncSend(MQConstant.TOPICOBJ, MessageBuilder.withPayload(commonResult).build());
         System.err.println("发送成功...");
         return commonResult;
     }

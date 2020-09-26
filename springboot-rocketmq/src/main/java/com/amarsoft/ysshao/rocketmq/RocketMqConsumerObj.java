@@ -3,9 +3,8 @@ package com.amarsoft.ysshao.rocketmq;/**
  * @create 2020-09-25 14:51
  */
 
-import com.amarsoft.ysshao.rocketmq.constan.MQConstan;
+import com.amarsoft.ysshao.rocketmq.constan.MQConstant;
 import com.amarsoft.ysshao.rocketmq.entity.CommonResult;
-import com.amarsoft.ysshao.rocketmq.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  **/
 @Component
-@RocketMQMessageListener(topic = MQConstan.TOPICOBJ, consumerGroup = MQConstan.CONSUMER_GROUP_OBJ)
+@RocketMQMessageListener(topic = MQConstant.TOPICOBJ, consumerGroup = MQConstant.CONSUMER_GROUP_OBJ)
 @Slf4j
 public class RocketMqConsumerObj implements RocketMQListener<CommonResult> {
 

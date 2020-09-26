@@ -7,7 +7,7 @@ package com.amarsoft.ysshao.rocketmq.constan;
  * @Date 2020/9/25 15:42
  * @Version 1.0
  **/
-public interface MQConstan {
+public interface MQConstant {
 
     String TOPIC = "ysshao_msg";
     String TOPICOBJ = "ysshao_obj";

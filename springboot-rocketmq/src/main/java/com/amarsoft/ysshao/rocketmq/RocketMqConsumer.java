@@ -3,22 +3,12 @@ package com.amarsoft.ysshao.rocketmq;/**
  * @create 2020-09-25 14:51
  */
 
-import com.amarsoft.ysshao.rocketmq.constan.MQConstan;
-import com.amarsoft.ysshao.rocketmq.entity.UserInfo;
+import com.amarsoft.ysshao.rocketmq.constan.MQConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.spring.annotation.ConsumeMode;
 import org.apache.rocketmq.spring.annotation.MessageModel;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @Author AllenShao
@@ -37,7 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 
 @Component
-@RocketMQMessageListener(topic = MQConstan.TOPIC,messageModel=MessageModel.CLUSTERING, consumerGroup = MQConstan.CONSUMER_GROUP)
+@RocketMQMessageListener(topic = MQConstant.TOPIC,messageModel=MessageModel.CLUSTERING, consumerGroup = MQConstant.CONSUMER_GROUP)
 @Slf4j
 public class RocketMqConsumer implements RocketMQListener<String> {
 
