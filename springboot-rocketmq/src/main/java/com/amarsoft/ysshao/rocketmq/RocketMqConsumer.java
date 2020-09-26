@@ -35,5 +35,6 @@ public class RocketMqConsumer implements RocketMQListener<String> {
     public void onMessage(String s) {
         log.info("消费消息:" + s);
         log.info(".....");
+        log.info("1111");
     }
 }
