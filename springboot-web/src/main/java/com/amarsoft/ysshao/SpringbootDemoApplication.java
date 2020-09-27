@@ -1,6 +1,5 @@
 package com.amarsoft.ysshao;
 
-import com.amarsoft.ysshao.entities.CustomerInfo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,8 +17,6 @@ public class SpringbootDemoApplication {
         System.out.println("项目启动开始...");
         SpringApplication.run(SpringbootDemoApplication.class, args);
         System.out.println("项目启动完成...");
-
-
     }
 
 }
