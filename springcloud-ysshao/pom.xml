@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.amarsoft.ysshao</groupId>
+    <artifactId>springcloud-ysshao</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--
+        maven聚合项目，其依赖关系为聚合关系
+        父项目类型为pom，子项目为jar或者war，如果子项目下面继续有子项目，子项目类型也为pom
+        maven中的继承关系，只有逻辑上父子关系，聚合项目不仅有逻辑上的包含，父项目会真实的包含子项目
+        父项目通过modules指明子模块，子模块通过parent表明继承关系
+    -->
+    <modules>
+        <module>customerinfo</module>
+        <module>springcloud-eureka</module>
+        <module>creditinfo</module>
+        <module>springcloud-hystrix-dashboard</module>
+        <module>springcloud-gateway</module>
+        <module>springcloud-config</module>
+        <module>springcloud-config-client</module>
+    </modules>
+
+    <!--SrpingCloud 聚合项目 -->
+    <name>springcloud-ysshao</name>
+    <description>SrpingCloud 聚合项目 控制版本</description>
+    <!--统一配置管理-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
+        <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
+    </properties>
+
+    <!-- 子模块继承之后，提供作用：锁定版本 + 子module不用谢groupId和version -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--Spring cloud alibaba 2.1.0.RELEASE-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>oracle</groupId>
+                <artifactId>oracle-jdbc</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork>
+                        <addResources>true</addResources>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+</project>

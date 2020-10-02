@@ -1,0 +1,48 @@
+server:
+  port: 8899
+#Eureka client相关
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册消息，默认为true，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka01.com:9001/eureka,http://eureka02.com:9002/eureka
+  instance:
+    instance-id: gateway
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能，利用微服务名称进行路由
+      routes:
+        - id: CUSTOMERINFO # 路由的id,没有规定规则但要求唯一,建议配合服务名
+          # 通过真实地址进行转发
+          #uri: http://customerinfo
+          # 真实场景下 一般是通过微服务的服务名来访问。 gateway能够自动负载均衡处理
+          uri: lb://CUSTOMERINFO
+          predicates:
+            - Path=/customerinfo/query/**,/** # 断言，路径相匹配的进行路由 逗号分隔，可多路径匹配。
+            # 可以通过下面的方式 增加断言的 条件限制。  更加细致的控制请求。
+            # 设置当前时间再加1小时进行测试，当测试请求的时间小于设定时间时就会报错，因为设置了 必须在 AFTER 某某时间以后请求才有效
+            #- After=2017-01-20T17:42:47.789-07:00[America/Denver]
+            #- Before=2017-01-20T17:42:47.789-07:00[America/Denver]
+            #- Cookie=username,ysshao
+            #- Header=X-Request-Id, \d+ #请求头要有X-Request-Id属性，并且值为正数
+            #- Host=192.xx.xx.00
+            #- Method=GET
+            #- Query=username, \d+ # 要有参数名username并且值还要是正整数才能路由
+          filters:
+          #过滤器StripPrefix，作用是去掉请求路径的最前面n个部分截取掉。
+          #StripPrefix=1就代表截取路径的个数为1，比如前端过来请求/test/good/1/view，匹配成功后，路由到后端的请求路径就会变成http://localhost:8888/good/1/view。
+          #- StripPrefix=1
+          - name: Hystrix
+            args:
+              name: fallbackCmd
+              fallbackUri: forward:/fallback

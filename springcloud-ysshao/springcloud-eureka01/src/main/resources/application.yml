@@ -1,0 +1,25 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: eureka-server01
+  security:
+    user:
+      name: ysshao
+      password: 000000
+
+#注册中心配置
+eureka:
+  instance:
+    #eureka服务端的实例名称
+    hostname: eureka02.com
+  client:
+    # false表示不向注册中心注册自己  集群需要true
+    register-with-eureka: false
+    # false表示自己端就是注册中心,我的职责就是维护服务实例,并不需要检索服务  集群需要true
+    fetch-registry: true
+    service-url:
+      # 设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址
+
+      # 相互注册  集群必须相互注册  很重要
+      defaultZone: http://eureka01.com:9001/eureka/
