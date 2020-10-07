@@ -55,3 +55,13 @@ feign:
 hystrix:
   dashboard:
     proxy-stream-allow-list: "*"
+  # 线程池核心线程数
+  threadpool:
+    default:
+      coreSize: 15
+      # 最大排队长度。默认-1，使用SynchronousQueue。其他值则使用 LinkedBlockingQueue。如果要从-1换成其他值则需重启，即该值不能动态调整，若要动态调整，需要使用到下边这个配置
+      maxQueueSize: 1000
+      #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
+      # 排队线程数量阈值，默认为5，达到时拒绝，如果配置了该选项，队列的大小是该队列
+      # 注意上面的值如果设置为-1 则此值没用。 本质的目的是为了动态调整。  比如现在的配置。 可以支持同时并发15个，等待队列20个。 超出的走拒绝策略
+      queueSizeRejectionThreshold: 20

@@ -18,6 +18,16 @@ spring:
     name: springcloud-gateway
   cloud:
     gateway:
+      # 一下为跨域配置
+      globalcors:
+        cors‐configurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
       discovery:
         locator:
           enabled: true # 开启从注册中心动态创建路由的功能，利用微服务名称进行路由

@@ -87,7 +87,7 @@ public class CreditInfoController {
     @HystrixCommand(fallbackMethod = "hystrix_errorHandler",commandProperties = {
             //是否开启断路器
             @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
-            //为时间窗口内的请求阈值，只有达到这个阈值，才会判断是否打开断路器。比如配置为10次，那么在时间窗口内请求9次，9次都失败了也不会打开断路器
+            //为时间窗口内的请求阈值，只有达到这个阈值，才会判断是否打开断路器。比如配置为10次， 根据下面配置的10秒 那么在时间窗口10秒内请求9次，9次都失败了也不会打开断路器
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),    //请求数达到后才计算
             //为时间窗口，当断路器打开后，会根据这个时间继续尝试接受请求，如果请求成功则关闭断路器。
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
@@ -114,6 +114,36 @@ public class CreditInfoController {
     }
 
 
+    @HystrixCommand(fallbackMethod = "threadPoolmsg",
+            commandKey = "createOrder",
+            commandProperties = {
+                @HystrixProperty(name="execution.isolation.strategy", value = "THREAD"),
+                @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+            },
+            threadPoolKey = "createOrderThreadPool",
+            groupKey = "Group1",
+            // 本方法中设置了，优先级高于yml的配置。
+            //目前配置， 请求最高并发是5个， 5个排队。  如果直接请求10个 全部成功，但是同时只有5个在执行。 请求11个，10个成功，1个拒绝
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "5"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "5"),
+                    @HystrixProperty(name = "maxQueueSize", value = "100")
+            }
+    )
+    @GetMapping("/hystrix/thread")
+    public String threadHystrix(){
+
+        log.info("线程名："+Thread.currentThread().getName()+"========threadHystrix========");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("线程名："+Thread.currentThread().getName()+"========end========");
+        return "线程池隔离控制";
+    }
+
+
     public String hystrix_TimeoutHandler(Integer id) {
         log.info("Hystrix接口调用超时。系统繁忙"+"线程池zz：" + Thread.currentThread().getName());
         return "/(ToT)/调用接口超时或异常、\t" + "\t当前线程池名字" + Thread.currentThread().getName();
@@ -129,6 +159,12 @@ public class CreditInfoController {
     public String global_FallbackMethod()
     {
         return "全局异常处理信息，请稍后再试，/(ㄒoㄒ)/~~";
+    }
+
+    // 下面是全局fallback方法
+    public String threadPoolmsg()
+    {
+        return "线程池超出最大队列,服务器繁忙,请稍后再试";
     }
 
 }
