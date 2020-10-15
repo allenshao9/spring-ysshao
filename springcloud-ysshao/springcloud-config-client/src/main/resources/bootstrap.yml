@@ -6,10 +6,14 @@ spring:
   cloud:
     #Config客户端配置
     config:
-      label: main #分支名称
+#      label: main #分支名称
       name: application #配置文件名称
       profile: dev #读取后缀名称 上诉3个综合就是 master分支上 config-dev.yml
-      uri: http://localhost:9010
+#      uri: http://localhost:9010
+      #可以从注册中心找到 Config-Server 同等于上面指定的地址
+      discovery:
+        enabled: true
+        service-id: config-server
 
 #Eureka client相关
 eureka:

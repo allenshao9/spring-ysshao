@@ -1,5 +1,7 @@
 server:
-  port: 9001
+  port: 9021
 spring:
   application:
     name: config1
+config:
+  info: ysshao555

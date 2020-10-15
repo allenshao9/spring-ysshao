@@ -62,7 +62,11 @@ public class CreditInfoController {
     })
     @GetMapping("/hystrix/timeout/{id}")
     public String hystrixOKTimeout(@PathVariable("id")  Integer id) {
-        int timeNumber = 3;
+        int timeNumber = 1;
+        if(id>100){
+            timeNumber =4;
+        }
+
         try {
             System.out.println(zz+"线程池zz：" + "--------------------");// new Date()为获取当前系统时间
             // 每次服务睡眠3s
@@ -146,7 +150,7 @@ public class CreditInfoController {
 
     public String hystrix_TimeoutHandler(Integer id) {
         log.info("Hystrix接口调用超时。系统繁忙"+"线程池zz：" + Thread.currentThread().getName());
-        return "/(ToT)/调用接口超时或异常、\t" + "\t当前线程池名字" + Thread.currentThread().getName();
+        return "调用接口超时或异常、\t" + "\t当前线程池名字" + Thread.currentThread().getName();
     }
 
     public String hystrix_errorHandler(Integer id) {

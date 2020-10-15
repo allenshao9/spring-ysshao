@@ -16,6 +16,11 @@ eureka:
 spring:
   application:
     name: springcloud-gateway
+  datasource:
+    username: czals757
+    password: czals757
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
   cloud:
     gateway:
       # 一下为跨域配置
@@ -32,6 +37,10 @@ spring:
         locator:
           enabled: true # 开启从注册中心动态创建路由的功能，利用微服务名称进行路由
       routes:
+#        - id: springcloud-gateway # 路由的id,没有规定规则但要求唯一,建议配合服务名
+#          uri: lb://springcloud-gateway
+#          predicates:
+#            - Path=/**
         - id: CUSTOMERINFO # 路由的id,没有规定规则但要求唯一,建议配合服务名
           # 通过真实地址进行转发
           #uri: http://customerinfo
@@ -52,6 +61,8 @@ spring:
           #过滤器StripPrefix，作用是去掉请求路径的最前面n个部分截取掉。
           #StripPrefix=1就代表截取路径的个数为1，比如前端过来请求/test/good/1/view，匹配成功后，路由到后端的请求路径就会变成http://localhost:8888/good/1/view。
           #- StripPrefix=1
+
+          #下面是启动熔断的作用，如果服务不可用直接走熔断
           - name: Hystrix
             args:
               name: fallbackCmd

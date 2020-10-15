@@ -1,0 +1,32 @@
+server:
+  port: 9010
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        #下面为本地配置中心
+        native:
+          search-locations: classpath:config
+#        git:
+#          uri: https://github.com/allenshao9/springcloud-config1.git #Github上的git仓库名字
+#          #指定默认分支。 不设置 默认为master 如果是其他的需要指定
+#          default-label: main
+#          ##搜索目录.这个目录指的是github上的目录
+#          search-paths:
+#            - springcloud-config1
+#username: #github账号
+#password: #github密码
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册消息，默认为true，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka01.com:9001/eureka,http://eureka02.com:9002/eureka
+  instance:
+    instance-id: config
+    prefer-ip-address: true
