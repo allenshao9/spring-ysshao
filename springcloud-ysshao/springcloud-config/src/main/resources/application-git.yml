@@ -16,7 +16,7 @@ spring:
             - springcloud-config1
           #配置github账号和密码
           username: 'allenshao9@163.com' #github账号
-          password: '@allen1209'  #github密码
+          password: 'xxxxxx'  #github密码
 eureka:
   client:
     #表示是否将自己注册进EurekaServer默认为true
