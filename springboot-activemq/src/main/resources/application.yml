@@ -1,0 +1,22 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /activemq
+spring:
+  activemq:
+    user: admin
+    password: admin
+    broker-url: nio://192.168.58.132:61618
+#    broker-url: tcp://192.168.58.132:61616
+
+    pool:
+      #true表示使用连接池；false时，每发送一条数据创建一个连接
+      enabled: true
+      #连接池最大连接数
+      max-connections: 50
+      #空闲的连接过期时间，默认为30秒
+      idle-timeout: 30000
+    packages:
+      # ActiveMQ5.12后 ，为了安全考虑，ActiveMQ默认不接受自定义的序列化对象，需要将自定义的加入到受信任的列表。
+      trust-all: true
+queueName: ysshao.queue
